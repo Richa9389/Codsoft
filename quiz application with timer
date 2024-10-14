@@ -1,0 +1,63 @@
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class QuizApplication {
+    static Scanner sc = new Scanner(System.in);
+    static int score = 0;
+    static int questionIndex = 0;
+    static boolean timeUp = false;
+
+    static String[][] questions = {
+            {"What is the capital of India ?", "1. Patna", "2. Noida", "3. Delhi", "4. Hyderabad", "3"},
+            {"How many colors does a rainbow have?", "1. two", "2. Seven", "3. Five", "4. Ten", "2"},
+            {"Who wrote 'Hamlet'?", "1. Charles Dickens", "2. J.K. Rowling", "3. William Shakespeare", "4. George Orwell", "3"}
+    };
+
+    public static void main(String[] args) {
+        while (questionIndex < questions.length) {
+            askQuestion();
+        }
+        displayResults();
+    }
+
+    public static void askQuestion() {
+        System.out.println(questions[questionIndex][0]);
+        for (int i = 1; i <= 4; i++) {
+            System.out.println(questions[questionIndex][i]);
+        }
+
+        timeUp = false;
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (!timeUp) {
+                    System.out.println("Time out!");
+                    questionIndex++;
+                    timeUp = true;
+                    timer.cancel();
+                }
+            }
+        }, 10000); 
+
+        while (!timeUp) {
+            System.out.print("Enter your answer (1-4): ");
+            int answer = sc.nextInt();
+            if (answer == Integer.parseInt(questions[questionIndex][5])) {
+                System.out.println("Correct!\n");
+                score++;
+            } else {
+                System.out.println("Incorrect.\n");
+            }
+            questionIndex++;
+            timeUp = true;
+            timer.cancel();
+        }
+    }
+
+    public static void displayResults() {
+        System.out.println("Quiz Completed!");
+        System.out.println("Your Score: " + score + "/" + questions.length);
+    }
+}
