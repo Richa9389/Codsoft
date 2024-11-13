@@ -12,6 +12,9 @@ public class QuizApplication {
             {"What is the capital of India ?", "1. Patna", "2. Noida", "3. Delhi", "4. Hyderabad", "3"},
             {"How many colors does a rainbow have?", "1. two", "2. Seven", "3. Five", "4. Ten", "2"},
             {"Who wrote 'Hamlet'?", "1. Charles Dickens", "2. J.K. Rowling", "3. William Shakespeare", "4. George Orwell", "3"}
+            {"What is the capital of Bihar ?", "1. Patna", "2. Noida", "3. Delhi", "4. Hyderabad", "1"},
+            {"what is color of sky", "1. blue", "2. green", "3. yellow", "4. red", "1"},
+            
     };
 
     public static void main(String[] args) {
